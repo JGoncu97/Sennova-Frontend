@@ -73,7 +73,7 @@ export default function Presentacion() { // Asegúrate de que este nombre de com
           <Box
               position="absolute"
               top="7%"
-              left="43%"
+              left="42%"
               transform="translate(-15%, -50%)"
               zIndex={3}
               textAlign="center"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, FormControl, FormLabel, Heading, VStack } from "@chakra-ui/react";
+import { Box, Button, Input, FormControl, FormLabel, Heading, VStack,Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@chakra-ui/react";
 import Swal from 'sweetalert2';
 
 const Register = () => {

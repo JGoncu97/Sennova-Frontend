@@ -18,36 +18,46 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import Register from './Register'; // Asegúrate de importar tu componente Register
 import ComercializadorForm from './Comercializador';
-import TarifasComercializadoras from './Tarifas';
-
+import Facturas from './Facturas'; 
+import BuscarFacturas from './BuscarFacturas';
 export default function HomePage() {
   const navigate = useNavigate();
   const [showRegister, setShowRegister] = useState(false);
   const [showComercializador, setShowComercializador] = useState(false);
-  const [showTarifas, setShowTarifas] = useState(false);
+  const [showFactura, setShowFactura] = useState(false);
+  const [showRegisterFactura, setShowRegisterFactura] = useState(false); // Añadido
+
+  const handleFacturasClick = () => {
+    setShowRegisterFactura(true);
+    setShowRegister(false);
+    setShowComercializador(false);
+    setShowFactura(true); // Añadido si necesitas que el estado 'showFactura' se actualice
+  };
 
   const handleRegisterClick = () => {
     setShowRegister(true);
     setShowComercializador(false);
-    setShowTarifas(false);
+    setShowRegisterFactura(false); // Añadido si necesitas que el estado 'showRegisterFactura' se actualice
   };
 
   const handleComercializadorClick = () => {
     setShowRegister(false);
     setShowComercializador(true);
-    setShowTarifas(false);
+    setShowRegisterFactura(false); // Añadido si necesitas que el estado 'showRegisterFactura' se actualice
+  };
+
+  const handleFacturaClick = () => {
+    navigate('/buscar-facturas'); // Redirige a la página de BuscarFacturas
   };
 
   const handleTarifasClick = () => {
-    setShowRegister(false);
-    setShowComercializador(false);
-    setShowTarifas(true);
+    navigate('/buscar-tarifas'); // Cambia la ruta a la página de "Buscar tarifas"
   };
 
   const handleCloseForm = () => {
     setShowRegister(false);
     setShowComercializador(false);
-    setShowTarifas(false);
+    setShowRegisterFactura(false); // Añadido
   };
 
   const handleLogout = () => {
@@ -96,7 +106,7 @@ export default function HomePage() {
             <MenuItem icon={<TrendingUpOutlinedIcon style={{ fontSize: 20 }} />} onClick={handleTarifasClick}>
               Tarifas por comercializador
             </MenuItem>
-            <MenuItem icon={<AddchartOutlinedIcon style={{ fontSize: 20 }} />}>Registro de facturas</MenuItem>
+            <MenuItem icon={<AddchartOutlinedIcon style={{ fontSize: 20 }} />} onClick={handleFacturaClick}>Registro de facturas</MenuItem>
             <MenuItem icon={<AnalyticsOutlinedIcon style={{ fontSize: 20 }} />}>Análisis de costos</MenuItem>
           </MenuList>
         </Menu>
@@ -125,7 +135,7 @@ export default function HomePage() {
       </Box>
 
       {/* Fondo opaco y formularios */}
-      {(showRegister || showComercializador || showTarifas) && (
+      {(showRegister || showComercializador || showRegisterFactura) && (
         <>
           <Box
             position="fixed"
@@ -163,7 +173,7 @@ export default function HomePage() {
             </Button>
             {showRegister && <Register />}
             {showComercializador && <ComercializadorForm />}
-            {showTarifas && <TarifasComercializadoras />}
+            {showRegisterFactura && <BuscarFacturas />} {/* Asegúrate de que el componente Facturas está importado y definido */}
           </Box>
         </>
       )}
